@@ -7,12 +7,21 @@ function TaskItem({ task }) {
     const [name, setName] = useState(task.name)
     let dispatch = useDispatch();
 
+    
+
+    /*const toggle = (id) => {
+        dispatch({
+          completedTask(taskId)
+        });
+      }; */
+
+
+
     return (
         <div>
             <div className="row mx-5 align-items-center">
             <div>
-                    <input type='checkbox' className='mr-3' onClick={() => dispatch(
-                    completedTask(task.Id))}
+                    <input type='checkbox' className='mr-3' onClick={() => dispatch(completedTask(task.id))}
                     />
                     </div>
                 <div>Id: {task.id.length > 1 ? task.id[2] : task.id}</div>

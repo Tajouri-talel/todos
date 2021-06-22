@@ -34,36 +34,34 @@ export let reducer = (state = initialState, action) => {
 
             return newTasks;
         case DELETE_TASK:
-            newTasks = [...state.Tasks];
-            newTasks = newTasks.filter(task => task.id != action.payload);
-            return newTasks;
+            return {
+                ...state,
+                Tasks: state.Tasks.filter((el) => el.id !== action.payload),
+              };
+            //return newTasks;
         case UPDATE_TASK:
-            newTasks = [...state];
-            let index = -1;
-            for (let i = 0; i < newTasks.length; i++) {
-                index++;
-                if (newTasks[i].id == action.payload.id) {
-                    break;
-                }
+            return {
+                ...state,
+                Tasks: state.Tasks.map((el) => {
+                  if (el.id === action.payload.id) {
+                    el.value = action.payload.name;
+                  }
+                  return el;
+                }),
+              };
 
-            }
-            if (index != -1) {
-                newTasks[index] = action.payload;
-                return newTasks;
-            }
         case COMPLETED_TASK:
-            newTasks = [...state];
-            let indx = -1;
-            for (let i = 0; i < newTasks.length; i++) {
-                indx++;
-                if (newTasks[i].id === action.payload) {
-                    break;
-                }
-            }
-            if (indx !== -1) {
-                newTasks.completed = action.payload;
-                return newTasks;    
-            }  
+            //newTasks = [...state];
+            return {
+                ...state,
+                Tasks: state.Tasks.map((el) => {
+                  if (el.id === action.payload) {
+                    el.completed = !el.completed;
+                  }
+                  return el;
+                }),
+              };
+            
         case FILTER:
             return {
                 ...state,

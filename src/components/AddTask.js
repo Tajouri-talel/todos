@@ -10,7 +10,7 @@ function AddTask() {
         <div>
             <div className="row m-5">
                 <input
-                
+                defaultValue="WHAT TO DO ?!..."
                 value={name}
                 onChange={(e)=>setName(e.target.value)}
                 type="text" className="col form-control"/>
